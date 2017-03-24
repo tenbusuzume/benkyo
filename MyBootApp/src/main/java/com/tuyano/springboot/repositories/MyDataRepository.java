@@ -14,7 +14,4 @@ public interface MyDataRepository extends JpaRepository<MyData, Long> {
 
 	public List<MyData> findByNameLike(String name);
 
-	public List<MyData> findByAgeGreaterThan(Integer age);
-
-	public List<MyData> findByBetween(Integer age1, Integer age2);
 }

@@ -32,12 +32,11 @@ public class MyData {
 	private String mail;
 
 	@Column(nullable = true)
-	@Min(0)
-	@Max(200)
+	@Min(value = 0)
+	@Max(value = 200)
 	private Integer age;
 
 	@Column(nullable = true)
-	@NotNull
 	private String memo;
 
 	public long getId() {
