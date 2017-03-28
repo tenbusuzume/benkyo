@@ -3,8 +3,12 @@ package com.tuyano.springboot;
 import java.util.List;
 
 import javax.persistence.EntityManager;
+import javax.persistence.Query;
 
-public class MsgDataDaoImpl implements MsgDataDao<MsgDataDao>{
+import org.springframework.stereotype.Repository;
+
+@Repository
+public class MsgDataDaoImpl implements MsgDataDao<MsgData> {
 	private EntityManager entityManager;
 
 	public MsgDataDaoImpl() {
@@ -17,7 +21,10 @@ public class MsgDataDaoImpl implements MsgDataDao<MsgDataDao>{
 
 	@Override
 	public List<MsgData> getAll() {
-		return entityManager.createQuery("from MsgData").getResultList();
+		Query query = entityManager.createQuery("from MsgData");
+		List<MsgData> list = query.getResultList();
+		entityManager.close();
+		return list;
 	}
 
 	@Override

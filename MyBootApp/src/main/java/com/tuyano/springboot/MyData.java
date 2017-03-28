@@ -1,11 +1,14 @@
 package com.tuyano.springboot;
 
+import java.util.List;
+
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.NamedQuery;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
@@ -16,10 +19,23 @@ import org.hibernate.validator.constraints.NotEmpty;
 
 @Entity
 @Table(name = "mydata")
-@NamedQuery(
-		name ="findByAge",
-		query="from MyData where age > :min and age < :max")
+/*
+ * @NamedQuery( name ="findByAge",
+ * query="from MyData where age > :min and age < :max")
+ */
 public class MyData {
+
+	@OneToMany(cascade = CascadeType.ALL)
+	@Column(nullable = true)
+	private List<MsgData> msgdatas;
+
+	public List<MsgData> getMsgDatas() {
+		return msgdatas;
+	}
+
+	public void setMsgdatas(List<MsgData> msgdatas) {
+		this.msgdatas = msgdatas;
+	}
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -42,7 +58,6 @@ public class MyData {
 
 	@Column(nullable = true)
 	private String memo;
-
 
 	public long getId() {
 		return id;
@@ -83,6 +98,5 @@ public class MyData {
 	public void setMemo(String memo) {
 		this.memo = memo;
 	}
-
 
 }

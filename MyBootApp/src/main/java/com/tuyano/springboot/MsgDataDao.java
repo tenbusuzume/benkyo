@@ -1,9 +1,10 @@
 package com.tuyano.springboot;
 
+import java.io.Serializable;
 import java.util.List;
 
-public interface MsgDataDao<T> {
+public interface MsgDataDao<T> extends Serializable {
 
-	public List<MsgData> getAll();
+	public List<T> getAll();
 	public MsgData findById(long id);
 }
