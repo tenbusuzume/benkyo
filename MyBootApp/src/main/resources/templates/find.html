@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http:\//www.thymeleaf.org">
 <head>
-<title>top page</title>
+<title>find page</title>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <style>
 h1 {
@@ -31,29 +31,35 @@ td {
 	color: black;
 	background: #e0e0ff;
 }
-
-.err {
-	color: red;
-}
 </style>
 </head>
 <body>
-	<h1 th:text="#{content.title}">Helo page</h1>
+	<h1 th:text="${title}">find page</h1>
 	<p th:text="${msg}"></p>
+	<table>
+		<form action="/find" method="post">
+		<tr>
+			<td>FIND:</td>
+			<td><input type="text" name="fstr" size="20" th:value="${value}" /></td>
+		</tr>
+		<tr>
+			<td></td>
+			<td><input type="submit" /></td>
+		</tr>
+		</form>
+	</table>
 	<table>
 		<tr>
 			<th>ID</th>
 			<th>名前</th>
 			<th>メール</th>
 			<th>年齢</th>
-			<th>メモ(TEL)</th>
 		</tr>
-		<tr th:each="obj : ${datalist}">
+		<tr th:each="obj:${datalist}">
 			<td th:text="${obj.id}"></td>
 			<td th:text="${obj.name}"></td>
 			<td th:text="${obj.mail}"></td>
 			<td th:text="${obj.age}"></td>
-			<td th:text="${obj.memo}"></td>
 		</tr>
 	</table>
 </body>
